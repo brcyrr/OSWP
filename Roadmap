@@ -1,3 +1,23 @@
+Offsec tarafından sunulan SSH bilgileri ile hedef sisteme bağlanma;
+
+
+Screen ile birden fazla ekran açma;
+
+
+Kablosuz kartı monitor moda alma;
+
+
+Airodump-ng ile ağı dinleyerek hedef ağları tespit etme;
+
+
+Monitor modundan çıkma;
+
+
+Hedef AP'nin olduğu kanalda monitor modda izleme;
+
+
+Airodump-ng ile hedef ağı ve ilgili kanalda dinleme;
+
 
 WEP? or WPA/WPA2?
 
