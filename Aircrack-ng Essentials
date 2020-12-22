@@ -1,1 +1,38 @@
 
+# airmon-ng check             ## control monitor process
+# airmon-ng check kill        ## kill monitor process
+# airmon-ng start wlan0       ## open the monitor mode 
+# airmon-ng start wlan0 3     ## istenilen kanalda başlatma
+# iwlist mon0 channel         ## hangi kanalda başladığını kontrol etme
+# airmon-ng stop mon0         ## close the monitor mode
+
+
+
+
+# airodump-ng mon0                                            ## temel bir ağı dinleme oturumu 
+# airodump-ng -c 3 --bssid <BSSID> -w cap1 mon0               ## belli bir AP'nin ağını dinleme
+# airodump-ng -c 3 --bssid <BSSID> -w cap1 --ivs mon0         ## ağı dinlerken dosya yakalama tarafından kullanılan disk ağını azaltma
+
+
+
+
+# aireplay-ng <options> <interface name>      ##general usage
+
+Attack            Attack Name
+------            -----------
+# 0               ## Deauthentication
+# 1               ## Fake Authentication 
+# 2               ## Interactive Packet Replay
+# 3               ## ARP Request Replay Attack 
+# 4               ## KoreK ChopChop Attack 
+# 5               ## Fragmentation Attack 
+# 6               ## Café-Latte Attack 
+# 7               ## Client-Oriented Fragmentation Attack 
+# 9               ## Injection Test 
+
+# aireplay-ng -9 mon0                             ## basic injection test
+# aireplay-ng -9 -e <ESSID> -a <AP MAC> mon0      ## injection test for hidden or specific SSID
+# aireplay-ng -9 -i <input interface> mon0        ## card-to-card (attack) injection test
+ 
+ 
+ 
