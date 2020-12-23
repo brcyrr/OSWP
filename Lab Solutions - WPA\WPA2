@@ -85,7 +85,8 @@ John the Ripper'ı çalıştırıp parolamızı arayarak yeni kuralların etkinl
 
 12.4 John the Ripper Lab 
 
-Henüz yapmadıysanız, AP'nizin WPA / WPA2 şifreleme ile yapılandırıldığından emin olun. Bu modülde gösterildiği gibi fazladan rakamların eklenmesini gerektiren bir şifre seçin.
+Henüz yapmadıysanız, AP'nizin WPA / WPA2 şifreleme ile yapılandırıldığından emin olun. Bu modülde gösterildiği gibi fazladan rakamların eklenmesini gerektiren bir 
+şifre seçin.
 
 - Kurban istemcinizin kimlik doğrulamasını kaldırarak bir WPA el sıkışması yakalayın.
 - Yeni parolanızın bulunabilmesi için varsayılan John the Ripper kurallarını düzenleyin.
@@ -141,7 +142,8 @@ Henüz yapmadıysanız, AP'nizden 4 yönlü bir WPA el sıkışması yakalayın 
 
 14.1.1 Attack Setup Lab 
 
-Erişim noktanızı WPA / WPA2 şifrelemeyle yapılandırın ve kurban istemcinizin AP ile ilişkilendirildiğinden emin olun. Kablosuz kartınızı AP kanal numarasında monitör moduna yerleştirmeyi unutmayın.
+Erişim noktanızı WPA / WPA2 şifrelemeyle yapılandırın ve kurban istemcinizin AP ile ilişkilendirildiğinden emin olun. Kablosuz kartınızı AP kanal numarasında 
+monitör moduna yerleştirmeyi unutmayın.
 
 - Monitör modu arayüzünüzde koklamaya başlamak için Pyrit'i kullanın.
 - Aireplay-ng ile kurban müşterinizin kimlik doğrulamasını kaldırın.
@@ -156,7 +158,8 @@ Erişim noktanızı WPA / WPA2 şifrelemeyle yapılandırın ve kurban istemcini
 
 14.4 Pyrit Lab 
 
-AP'nizi WPA şifrelemeyle yapılandırın ve kurban istemcinizin kablosuz ağ ile ilişkilendirildiğinden emin olun. Kablosuz arayüzünüzü AP'nizin kanalında monitör modunda başlatmayı unutmayın.
+AP'nizi WPA şifrelemeyle yapılandırın ve kurban istemcinizin kablosuz ağ ile ilişkilendirildiğinden emin olun. Kablosuz arayüzünüzü AP'nizin kanalında monitör 
+modunda başlatmayı unutmayın.
 
 - Monitör modu arayüzünüzde koklamak için Pyrit kullanın.
 - Kurban müşterinizin kimlik doğrulamasını kaldırmak için Aireplay-ng kullanın.
