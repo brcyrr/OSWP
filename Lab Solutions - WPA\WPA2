@@ -54,7 +54,8 @@ işleyin ve daha önce yakaladığınız WPA el sıkışmasını kırmak için A
 
 12.1.1 Attack Setup Lab 
 
-Erişim noktanızı WPA / WPA2 şifrelemeyle yapılandırın ve parolanın sonuna 2 veya 3 basamak ekleyin. Kurban istemcinizi AP'ye bağlanacak şekilde yeniden yapılandırın.
+Erişim noktanızı WPA / WPA2 şifrelemeyle yapılandırın ve parolanın sonuna 2 veya 3 basamak ekleyin. Kurban istemcinizi AP'ye bağlanacak şekilde yeniden 
+yapılandırın.
 
 - Kablosuz kartınızı izleme moduna getirin ve Airodump yakalamayı başlatın.
 - Kurban istemcinin kimlik doğrulamasını kaldırın ve WPA 4 yönlü el sıkışmasını yakaladığınızdan emin olun.
