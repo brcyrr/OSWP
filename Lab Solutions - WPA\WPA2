@@ -2,8 +2,8 @@
 
 11.1.1 Attack Setup Lab 
 
-Laboratuvar erişim noktanızı WPA veya WPA2 şifrelemeyle yapılandırın ve önceden paylaşılan bir parola ayarlayın. Kurban istemcinizi ağa bağlanacak şekilde yeniden 
-yapılandırdığınızdan emin olun.
+Laboratuvar erişim noktanızı WPA veya WPA2 şifrelemeyle yapılandırın ve önceden paylaşılan bir parola ayarlayın. Kurban istemcinizi ağa bağlanacak şekilde 
+yeniden yapılandırdığınızdan emin olun.
 
 - Kablosuz arayüzünüzü AP kanalında monitör modunda başlatın.
 - Yakalamayı diske kaydederek bir Airodump yakalaması başlatın.
@@ -86,8 +86,8 @@ John the Ripper'ı çalıştırıp parolamızı arayarak yeni kuralların etkinl
 
 12.4 John the Ripper Lab 
 
-Henüz yapmadıysanız, AP'nizin WPA / WPA2 şifreleme ile yapılandırıldığından emin olun. Bu modülde gösterildiği gibi fazladan rakamların eklenmesini gerektiren bir 
-şifre seçin.
+Henüz yapmadıysanız, AP'nizin WPA / WPA2 şifreleme ile yapılandırıldığından emin olun. Bu modülde gösterildiği gibi fazladan rakamların eklenmesini gerektiren
+bir şifre seçin.
 
 - Kurban istemcinizin kimlik doğrulamasını kaldırarak bir WPA el sıkışması yakalayın.
 - Yeni parolanızın bulunabilmesi için varsayılan John the Ripper kurallarını düzenleyin.
