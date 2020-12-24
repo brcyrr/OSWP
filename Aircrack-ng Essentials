@@ -7,6 +7,9 @@
 # airmon-ng stop mon0         ## close the monitor mode
 
 
+# iw dev wlan0 scan | grep SSID
+
+
 
 
 # airodump-ng mon0                                            ## temel bir ağı dinleme oturumu 
