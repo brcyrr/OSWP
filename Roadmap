@@ -42,6 +42,9 @@ WEP/WPA2
 
 
 screen -S test
+scren -l
+screen -a -r 13245
+
 CTRL + a + n : Bir sonraki oturuma bağlanır.
 CTRL + a + p : Bir önceki oturuma geri döner.
 
