@@ -37,3 +37,14 @@ WEP/WPA2
 - with JTR and Aircrack-ng? 
 - with coWPAtty? 
 - with Pyrit? 
+
+
+
+
+screen -S test
+CTRL + a + n : Bir sonraki oturuma bağlanır.
+CTRL + a + p : Bir önceki oturuma geri döner.
+
+
+
+
