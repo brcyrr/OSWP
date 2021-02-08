@@ -40,13 +40,13 @@ Any client connected to AP? YES? or NO?
 > YES;
 
   # ARP Request Replay Attack
-  # Interactive Request Replay Attack
+  # Interactive Packet Replay Attack
   # Deauthentication Attack
   
 > NO;
 
   # Fragmentation Attack
-  # Korek Chop Chop Attack
+  # Korek ChopChop Attack
 
 
 > AUTH: SKA (Bypassing WEP Shared Key Authentication);
