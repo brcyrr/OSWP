@@ -1,25 +1,23 @@
 
-# airmon-ng check             ## control monitor process
-# airmon-ng check kill        ## kill monitor process
-# airmon-ng start wlan0       ## open the monitor mode 
-# airmon-ng start wlan0 3     ## istenilen kanalda başlatma
-# iwlist mon0 channel         ## hangi kanalda başladığını kontrol etme
-# airmon-ng stop mon0         ## close the monitor mode
-
-
-# iw dev wlan0 scan | grep SSID
-
+# airmon-ng check                   ## control monitor process
+# airmon-ng check kill              ## kill monitor process
+# airmon-ng start wlan0             ## open the monitor mode 
+# airmon-ng start wlan0 3           ## istenilen kanalda başlatma
+# iwlist mon0 channel               ## hangi kanalda başladığını kontrol etme
+# airmon-ng stop mon0               ## close the monitor mode
+# iw dev wlan0 scan | grep SSID 
 
 
 
-# airodump-ng mon0                                            ## temel bir ağı dinleme oturumu 
-# airodump-ng -c 3 --bssid <BSSID> -w cap1 mon0               ## belli bir AP'nin ağını dinleme
-# airodump-ng -c 3 --bssid <BSSID> -w cap1 --ivs mon0         ## ağı dinlerken dosya yakalama tarafından kullanılan disk ağını azaltma
+# airodump-ng mon0                                            ## a basic listening session
+# airodump-ng -c 3 --bssid <BSSID> -w cap1 mon0               ## listening to a specific AP's network
+# airodump-ng -c 3 --bssid <BSSID> -w cap1 --ivs mon0         ## reducing disk network used by file capture while listening to the network
 
 
 
 
 # aireplay-ng <options> <interface name>      ##general usage
+
 
 Attack            Attack Name
 ------            -----------
@@ -32,6 +30,9 @@ Attack            Attack Name
 # 6               ## Café-Latte Attack 
 # 7               ## Client-Oriented Fragmentation Attack 
 # 9               ## Injection Test 
+
+
+
 
 # aireplay-ng -9 mon0                             ## basic injection test
 # aireplay-ng -9 -e <ESSID> -a <AP MAC> mon0      ## injection test for hidden or specific SSID
