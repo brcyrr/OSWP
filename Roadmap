@@ -1,53 +1,77 @@
-Offsec tarafından sunulan SSH bilgileri ile hedef sisteme bağlanma;
+
+ssh <username>@<target_ip> -p<port>                        ## @offsec tarafından sunulan SSH bilgileri ile hedef sisteme bağlanma
+iw dev wlan0 scan | grep SSID
+airmon-ng start wlan0                                      ## Kablosuz kartı monitor moda alma;
+airodump-ng mon0                                           ## airodump-ng ile ağı dinleyerek hedef ağları tespit etme;
+iwconfig mon0 channel 3
+iwlist mon0 channel
+airodump-ng -c 3 --bssid <AP_MAC> -w <file_ouput> mon0     ## Airodump-ng ile hedef ağı ve ilgili kanalda dinleme;
+                                       
+                                       
 
 
-Screen ile birden fazla ekran açma;
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-Kablosuz kartı monitor moda alma;
+## Opening more than one screen with the "screen" tool;
+
+  # screen -S test        ## 
+  # scren -l              ## 
+  # screen -a -r 13245    ## 
+  # CTRL + a + n          ##  Bir sonraki oturuma bağlanır.
+  # CTRL + a + p          ##  Bir önceki oturuma geri döner.
 
 
-Airodump-ng ile ağı dinleyerek hedef ağları tespit etme;
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-Monitor modundan çıkma;
-
-
-Hedef AP'nin olduğu kanalda monitor modda izleme;
-
-
-Airodump-ng ile hedef ağı ve ilgili kanalda dinleme;
-
+### Attack Roadmap ###
 
 WEP? or WPA/WPA2?
 
-WEP;
+> WEP;
 
-- with Connected Clients?
-- via a Client?
-- Clientless WEP Networks?
+AUTH: OPN? or SKA?
 
-- Bypassing WEP Shared Key Authentication 
+> AUTH: OPN;
+
+Any client connected to AP? YES? or NO?
+
+> YES;
+
+  # ARP Request Replay Attack
+  # Interactive Request Replay Attack
+  # Deauthentication Attack
+  
+> NO;
+
+  # Fragmentation Attack
+  # Korek Chop Chop Attack
 
 
+> AUTH: SKA (Bypassing WEP Shared Key Authentication);
 
-WEP/WPA2
+## There is a client connected to the AP. You can follow the steps below to attack;
 
-- with Aircrack-ng?
-- with JTR and Aircrack-ng? 
-- with coWPAtty? 
-- with Pyrit? 
+  # Deauthentication Attack
+  # Fake Authentication Attack
+  # ARP Request Replay Attack
+  # Deauthentication Attack
+  # Aircrack-ng
 
 
+> WPA/WPA2
 
+## Attack;
 
-screen -S test
-scren -l
-screen -a -r 13245
+  # Deauthentication Attack
+  
+## Breaking the network key;
 
-CTRL + a + n : Bir sonraki oturuma bağlanır.
-CTRL + a + p : Bir önceki oturuma geri döner.
-
+  # with Aircrack-ng?
+  # with JTR and Aircrack-ng? 
+  # with coWPAtty? 
+  # with Pyrit? 
 
 
 
