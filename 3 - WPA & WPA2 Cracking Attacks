@@ -24,7 +24,6 @@
    genpmk -f <wordlist> -d <hashes filename> -s <ESSID>
    cowpatty -r <capture> -d <hashes filename> -2 -s <ESSID>
  
-    
   
 ## Cracking with Pyrit
 
