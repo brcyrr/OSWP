@@ -9,15 +9,16 @@
 # airmon-ng check kill              ## kill monitor process
 # airmon-ng start wlan0             ## open the monitor mode 
 # airmon-ng start wlan0 3           ## istenilen kanalda başlatma
-# iwlist mon0 channel               ## hangi kanalda başladığını kontrol etme
+# iwconfig mon0 channel 3           ## change the channel where the wireless network card is located
+# iwlist mon0 channel               ## view the channel where the wireless network card is located
 # airmon-ng stop mon0               ## close the monitor mode
-# iw dev wlan0 scan | grep SSID 
+# iw dev wlan0 scan | grep SSID     ## wireless networks within the range of the wireless card (wlan0) are detected
 
 
 
 # airodump-ng mon0                                            ## a basic listening session
-# airodump-ng -c 3 --bssid <BSSID> -w cap1 mon0               ## listening to a specific AP's network
-# airodump-ng -c 3 --bssid <BSSID> -w cap1 --ivs mon0         ## reducing disk network used by file capture while listening to the network
+# airodump-ng -c 3 --bssid <AP_MAC> -w cap1 mon0               ## listening to a specific AP's network
+# airodump-ng -c 3 --bssid <AP_MAC> -w cap1 --ivs mon0         ## reducing disk network used by file capture while listening to the network
 
 
 
