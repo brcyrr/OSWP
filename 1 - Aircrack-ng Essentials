@@ -1,3 +1,9 @@
+# Notes
+
+> wlan0   ## network interface where the wireless network card
+> mon0    ## network interface where the wireless network card is in monitor mode
+
+
 
 # airmon-ng check                   ## control monitor process
 # airmon-ng check kill              ## kill monitor process
@@ -12,7 +18,6 @@
 # airodump-ng mon0                                            ## a basic listening session
 # airodump-ng -c 3 --bssid <BSSID> -w cap1 mon0               ## listening to a specific AP's network
 # airodump-ng -c 3 --bssid <BSSID> -w cap1 --ivs mon0         ## reducing disk network used by file capture while listening to the network
-
 
 
 
@@ -33,10 +38,9 @@ Attack            Attack Name
 
 
 
-
 # aireplay-ng -9 mon0                             ## basic injection test
 # aireplay-ng -9 -e <ESSID> -a <AP MAC> mon0      ## injection test for hidden or specific SSID
 # aireplay-ng -9 -i <input interface> mon0        ## card-to-card (attack) injection test
  
  
- 
+
