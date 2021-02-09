@@ -35,7 +35,7 @@
    or
    pyrit -i <wordlist> import_passwords                                 ## import word list to crack WPA password in pyrit with database mode                         
    pyrit -e <ESSID> create_essid                                        ## adding the ESSID of the access point to the pyrit database
-   pyrit batch 
-   pyrit -r <capture> -b <AP MAC> attack_db
+   pyrit batch                                                          ## creating PMKs for ESSID
+   pyrit -r <capture> -b <AP MAC> attack_db                             ## cracking WPA password in database mode with pyrit
    
    
