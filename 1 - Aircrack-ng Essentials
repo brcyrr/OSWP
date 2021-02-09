@@ -16,7 +16,7 @@
 
 
 
-# airodump-ng mon0                                            ## a basic listening session
+# airodump-ng mon0                                             ## a basic listening session
 # airodump-ng -c 3 --bssid <AP_MAC> -w cap1 mon0               ## listening to a specific AP's network
 # airodump-ng -c 3 --bssid <AP_MAC> -w cap1 --ivs mon0         ## reducing disk network used by file capture while listening to the network
 
