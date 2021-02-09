@@ -1,28 +1,31 @@
 
-ssh <username>@<target_ip> -p<port>                        ## @offsec tarafından sunulan SSH bilgileri ile hedef sisteme bağlanma
-iw dev wlan0 scan | grep SSID
-airmon-ng start wlan0                                      ## Kablosuz kartı monitor moda alma;
-airodump-ng mon0                                           ## airodump-ng ile ağı dinleyerek hedef ağları tespit etme;
-iwconfig mon0 channel 3
-iwlist mon0 channel
-airodump-ng -c 3 --bssid <AP_MAC> -w <file_ouput> mon0     ## Airodump-ng ile hedef ağı ve ilgili kanalda dinleme;
-                                       
-                                       
 
-
+ssh <username>@<target_ip> -p<port>                        ## connecting to the target system with SSH information provided by @offsec
+iw dev wlan0 scan | grep SSID                              ## wireless networks within the range of the wireless card (wlan0) are detected
+airmon-ng start wlan0                                      ## setting the wireless card (wlan0) to monitor mode
+airodump-ng mon0                                           ## detecting surrounding networks by listening to the network in monitor mode
+iwconfig mon0 channel 3                                    ## change the channel where the wireless network card is located
+iwlist mon0 channel                                        ## view the channel where the wireless network card is located
+airodump-ng -c 3 --bssid <AP_MAC> -w <file_ouput> mon0     ## listening to the target AP on the specified channel
+                                                                              
+       
+ 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 
 ## Opening more than one screen with the "screen" tool;
 
-  # screen -S test        ## 
-  # scren -l              ## 
-  # screen -a -r 13245    ## 
-  # CTRL + a + n          ##  Bir sonraki oturuma bağlanır.
-  # CTRL + a + p          ##  Bir önceki oturuma geri döner.
+  # screen -S test        ## creating a workspace
+  # scren -l              ## list actively used screens
+  # screen -a -r 13245    ## switch to a specifically selected screen
+  # CTRL + a + n          ## connects to the next session
+  # CTRL + a + p          ## go back to the previous session
+
 
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 
 ### Attack Map ###
@@ -75,3 +78,4 @@ Any client connected to AP? YES? or NO?
 
 
 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
