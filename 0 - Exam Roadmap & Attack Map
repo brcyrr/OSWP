@@ -1,4 +1,4 @@
-
+## Exam Roadmap
 
 ssh <username>@<target_ip> -p<port>                        ## connecting to the target system with SSH information provided by @offsec
 iw dev wlan0 scan | grep SSID                              ## wireless networks within the range of the wireless card (wlan0) are detected
@@ -72,10 +72,10 @@ WEP? or WPA/WPA2?
   
   ## Cracking the network key;
 
-    # with Aircrack-ng?
-    # with JTR and Aircrack-ng? 
-    # with coWPAtty? 
-    # with Pyrit? 
+    # with Aircrack-ng
+    # with JTR and Aircrack-ng
+    # with coWPAtty
+    # with Pyrit
 
 
-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
