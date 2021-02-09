@@ -5,10 +5,9 @@
 
 
 
-# airmon-ng check                   ## control monitor process
-# airmon-ng check kill              ## kill monitor process
+# airmon-ng check                   ## control monitor processes
+# airmon-ng check kill              ## kill monitor processes
 # airmon-ng start wlan0             ## open the monitor mode 
-# airmon-ng start wlan0 3           ## istenilen kanalda başlatma
 # iwconfig mon0 channel 3           ## change the channel where the wireless network card is located
 # iwlist mon0 channel               ## view the channel where the wireless network card is located
 # airmon-ng stop mon0               ## close the monitor mode
