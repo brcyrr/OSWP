@@ -30,52 +30,52 @@ airodump-ng -c 3 --bssid <AP_MAC> -w <file_ouput> mon0     ## listening to the t
 
 ### Attack Map ###
 
+
 WEP? or WPA/WPA2?
 
 > WEP;
 
-AUTH: OPN? or SKA?
+  AUTH: OPN? or SKA?
 
-> AUTH: OPN;
+  > AUTH: OPN;
 
-Any client connected to AP? YES? or NO?
+    Any client connected to AP? YES? or NO?
 
-> YES;
+    > YES;
 
-  # ARP Request Replay Attack
-  # Interactive Packet Replay Attack
-  # Deauthentication Attack
+      # ARP Request Replay Attack
+      # Interactive Packet Replay Attack
+      # Deauthentication Attack
   
-> NO;
+    > NO;
 
-  # Fragmentation Attack
-  # Korek ChopChop Attack
+      # Fragmentation Attack
+      # Korek ChopChop Attack
 
 
-> AUTH: SKA (Bypassing WEP Shared Key Authentication);
+  > AUTH: SKA (Bypassing WEP Shared Key Authentication);
 
-## There is a client connected to the AP. You can follow the steps below to attack;
+    ## There is a client connected to the AP. You can follow the steps below to attack;
 
-  # Deauthentication Attack
-  # Fake Authentication Attack
-  # ARP Request Replay Attack
-  # Deauthentication Attack
-  # Aircrack-ng
+     # Deauthentication Attack
+     # Fake Authentication Attack
+     # ARP Request Replay Attack
+     # Deauthentication Attack
+     # Aircrack-ng
 
 
 > WPA/WPA2
 
-## Attack;
+  ## Attack;
 
-  # Deauthentication Attack
+    # Deauthentication Attack
   
-## Breaking the network key;
+  ## Cracking the network key;
 
-  # with Aircrack-ng?
-  # with JTR and Aircrack-ng? 
-  # with coWPAtty? 
-  # with Pyrit? 
-
+    # with Aircrack-ng?
+    # with JTR and Aircrack-ng? 
+    # with coWPAtty? 
+    # with Pyrit? 
 
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
