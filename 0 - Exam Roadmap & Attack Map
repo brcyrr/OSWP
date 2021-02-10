@@ -45,10 +45,11 @@ WEP? or WPA/WPA2?
 
       # ARP Request Replay Attack
       # Interactive Packet Replay Attack
-      # Deauthentication Attack
+      # Deauthentication Attack (can be used in both cases (yes or no))
   
     > NO;
 
+      # Fake Authentication Attack (can be used in both cases (yes or no))
       # Fragmentation Attack
       # Korek ChopChop Attack
 
@@ -58,7 +59,7 @@ WEP? or WPA/WPA2?
     ## There is a client connected to the AP. You can follow the steps below to attack;
 
      # Deauthentication Attack
-     # Fake Authentication Attack
+     # Fake Shared Key Authentication Attack
      # ARP Request Replay Attack
      # Deauthentication Attack
      # Aircrack-ng
