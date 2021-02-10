@@ -15,7 +15,7 @@
    ./john --wordlist=<wordlist> --rules --stdout | aircrack-ng -e <ESSID> -w - <capture_file>     ## cracking WPA password with JTR and aircrack-ng 
   
   
-## Cracking with  coWPAtty
+## Cracking with coWPAtty
   
    airmon-ng start <interface> <AP_Channel>                                         ## setting the wireless card (wlan0) to monitor mode
    airodump-ng -c <AP_Channel> --bssid <AP_MAC> -w <capture_file> <interface>       ## listening to the target AP on the specified channel
