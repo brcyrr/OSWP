@@ -39,7 +39,7 @@ Attack            Attack Name
 
 
 # aireplay-ng -9 mon0                             ## basic injection test
-# aireplay-ng -9 -e <ESSID> -a <AP MAC> mon0      ## injection test for hidden or specific SSID
+# aireplay-ng -9 -e <ESSID> -a <AP_MAC> mon0      ## injection test for hidden or specific SSID
 # aireplay-ng -9 -i <input interface> mon0        ## card-to-card (attack) injection test
  
  
