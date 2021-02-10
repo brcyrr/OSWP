@@ -6,7 +6,7 @@ airmon-ng start wlan0                                      ## setting the wirele
 airodump-ng mon0                                           ## detecting surrounding networks by listening to the network in monitor mode
 iwconfig mon0 channel 3                                    ## change the channel where the wireless network card is located
 iwlist mon0 channel                                        ## view the channel where the wireless network card is located
-airodump-ng -c 3 --bssid <AP_MAC> -w <file_ouput> mon0     ## listening to the target AP on the specified channel
+airodump-ng -c 3 --bssid <AP_MAC> -w <capture_file> mon0   ## listening to the target AP on the specified channel
                                                                               
        
  
